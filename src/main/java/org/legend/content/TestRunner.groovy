@@ -2,7 +2,7 @@
 
 
 import junit.framework.TestCase
-import org.legend.content.bean.Student
+import lib.Student
 
 import static net.grinder.script.Grinder.grinder
 

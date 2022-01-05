@@ -1,4 +1,4 @@
-package org.legend.content.bean;
+package lib;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
