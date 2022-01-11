@@ -1,11 +1,9 @@
+
 //ngrinder脚本的上下文对象
 
 
-import junit.framework.TestCase
-import lib.Student
-
+import org.springframework.context.support.ClassPathXmlApplicationContext
 import static net.grinder.script.Grinder.grinder
-
 import net.grinder.script.GTest
 import net.grinder.scriptengine.groovy.junit.GrinderRunner
 import net.grinder.scriptengine.groovy.junit.annotation.BeforeProcess
@@ -14,7 +12,6 @@ import net.grinder.scriptengine.groovy.junit.annotation.BeforeThread
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
 import org.ngrinder.http.HTTPRequest
 import org.ngrinder.http.HTTPRequestControl
 import org.ngrinder.http.HTTPResponse
@@ -102,15 +99,17 @@ class TestRunner {
     @Test
      void test() {
 //        println SecureUtil.md5("a")//加密转为16进制字符串
-        HTTPResponse response = request.GET("http://www.baidu.com", params)
+//        HTTPResponse response = request.GET("http://www.baidu.com", params)
 
-        if (response.statusCode == 301 || response.statusCode == 302) {
-            grinder.logger.warn("Warning. The response may not be correct. The response code was {}.", response.statusCode)
-        } else {
-            Student student = new Student("legend", 36)
-            println(student.getName())
-            TestCase.assertEquals(response.statusCode, 200)
-        }
+//        if (response.statusCode == 301 || response.statusCode == 302) {
+//            grinder.logger.warn("Warning. The response may not be correct. The response code was {}.", response.statusCode)
+//        } else {
+//            Student student = new Student("legend", 36)
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml")
+            println(context.getBean("student"))
+
+//            TestCase.assertEquals(response.statusCode, 200)
+//        }
 
     }
 }
